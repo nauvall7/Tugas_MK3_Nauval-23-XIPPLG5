@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error {
+            color: red;
+            display: none;
+        }
+        .welcome {
+            display: none;
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginContainer">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username (email)" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <p class="error" id="errorMessage">Username harus menggunakan email!!!</p>
+    </div>
+    <h2 class="welcome" id="welcomeMessage">Welcome everybody !!!</h2>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const loginContainer = document.getElementById('loginContainer');
+            const welcomeMessage = document.getElementById('welcomeMessage');
+
+            // Check if the username is in email format
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const validUsername = 'goeroeku@mail.com'; // Example valid email
+            const validPassword = 'password123'; // Example valid password
+
+            if (!emailPattern.test(username)) {
+                errorMessage.textContent = 'Username harus menggunakan email!!!';
+                errorMessage.style.display = 'block';
+            } else if (username === validUsername && password === validPassword) {
+                loginContainer.style.display = 'none';
+                welcomeMessage.style.display = 'block';
+            } else {
+                errorMessage.textContent = 'Username dan password yang anda masukkan salah!!!';
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
